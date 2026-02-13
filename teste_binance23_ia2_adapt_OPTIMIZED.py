@@ -1,54 +1,60 @@
+# teste_binance23_ia2_adapt_OPTIMIZED.py
+
 import pandas as pd
 import numpy as np
-import logging
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import accuracy_score, classification_report
-import backtrader as bt
+from sklearn.metrics import f1_score
 
-# Configure logging
-logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+def backtest_strategy(data, strategy_func):
+    """
+    Simulates a trading strategy on historical data.
+  
+    Parameters:
+    data (pd.DataFrame): Historical price data.
+    strategy_func (function): The trading strategy to be tested.
+  
+    Returns:
+    dict: Performance metrics.
+    """
+    # Implement backtesting logic
+    # Calculate metrics such as return, Sharpe ratio, max drawdown
+    return {"ROI": roi, "Sharpe": sharpe_ratio, "Max Drawdown": max_drawdown}
 
-class TradingBot:
-    def __init__(self, data):
-        self.data = data
-        self.model = RandomForestClassifier()
+def performance_monitoring(results):
+    """
+    Monitors performance metrics.
+  
+    Parameters:
+    results (dict): Performance metrics from backtest.
+    """
+    # Log or print the results
+    print(f"ROI: {results['ROI']}")
+    print(f"Sharpe Ratio: {results['Sharpe']}")
+    print(f"Max Drawdown: {results['Max Drawdown']}")
 
-    def preprocess_data(self):
-        # Implement data validation here
-        logging.info("Preprocessing data...")
-        # Filtering and deduplicating logic goes here
-        self.data = self.data[self.data['signal'].notnull()]
+def detect_overfitting(model, validation_data):
+    """
+    Detects overfitting in a model using a validation dataset.
+  
+    Parameters:
+    model: The machine learning model to evaluate.
+    validation_data: Data to validate the model.
+  
+    Returns:
+    bool: True if overfitting is detected, False otherwise.
+    """
+    # Implement overfitting detection logic
+    return overfitting_detected
 
-    def feature_engineering(self):
-        logging.info("Creating features...")
-        # Reduce filters to only essential criteria
-        self.data['feature1'] = self.data['price'].pct_change(1)
-        self.data['feature2'] = self.data['volume'].rolling(window=5).mean()
-        # Additional feature calculations
+# Example of using the above functions
+if __name__ == "__main__":
+    # Load historical data
+    historical_data = pd.read_csv("data/historical_prices.csv")
 
-    def train_model(self):
-        X = self.data[['feature1', 'feature2']]
-        y = self.data['target']
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-        self.model.fit(X_train, y_train)
-        predictions = self.model.predict(X_test)
-        logging.info(f"Model accuracy: {accuracy_score(y_test, predictions)}")
+    # Define your trading strategy
+    def my_strategy(data):
+        # Logic for strategy goes here
+        pass
 
-    def backtest(self):
-        logging.info("Starting backtests...")
-        # Backtesting logic using Backtrader library
-        cerebro = bt.Cerebro()
-        # ... (implementation details for Backtrader)
-
-    def run(self):
-        self.preprocess_data()
-        self.feature_engineering()
-        self.train_model()
-        self.backtest()
-
-if __name__ == '__main__':
-    # Sample data loading - This should ideally load from an external source
-    data = pd.read_csv('data.csv')
-    bot = TradingBot(data)
-    bot.run()
+    # Backtest the strategy
+    results = backtest_strategy(historical_data, my_strategy)
+    performance_monitoring(results)
