@@ -66,8 +66,8 @@ logger = logging.getLogger("CruzadaBot")
 # ================================================================
 # CONFIG
 # ================================================================
-API_KEY = "xSMxXL8rlb66ZyRyS3TRNZ2XHkjllSYIL6xi5SSXhrHrhOmZWtRuz1ocfZMrSD9i"
-API_SECRET = "aL80T0crJ4fexKQBCglaSjq7KRBNXGxnWNCRvqLlFTmh4UREHRNk6DoDxJuc4Nuk"
+API_KEY = ""
+API_SECRET = ""
 
 # -------------------- Parâmetros Gerais --------------------
 REAL_TRADES = True
